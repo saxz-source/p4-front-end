@@ -527,3 +527,12 @@ footer {
   }
 }
 
+
+/****************ERROR FORM MESSAGES *******************/
+
+.formError {
+  color : red;
+  display: none;
+  font-size: 0.6em;
+  padding-top: 0.4em;
+}
