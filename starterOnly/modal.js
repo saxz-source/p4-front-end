@@ -20,4 +20,8 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-
+// Close the modal when click on the top-right cross
+const closeModal = document.getElementById("closeModal")
+closeModal.addEventListener("click", function (){
+modalbg.style.visibility = "hidden"
+})
