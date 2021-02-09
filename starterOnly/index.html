@@ -53,9 +53,9 @@
       </div>
 
       <!-- Modale  -->
-      <div class="bground">
+      <div class="bground" id="subscribeModal">
         <div class="content">
-          <span class="close" id="closeModal"></span>
+          <span class="close closeModal" id="closeModal"></span>
           <div class="modal-body">
             <form
               name="reserve"
@@ -104,7 +104,6 @@
                   required
                 /><br>
                 <div class="formError" id="emailInputError">Veuillez entrer une adresse mail valide</div>
-
               </div>
               <div
                 class="formData" >
@@ -117,14 +116,12 @@
                   required
                 /><br>
                 <div class="formError" id="birthdateInputError">Veillez saisir votre date de naissance</div>
-
               </div>
               <div
                 class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
                 <div class="formError" id="quantityInputError">Veillez saisir un nombre (inférieur à 99)</div>
-
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div
@@ -197,7 +194,6 @@
                 >
                 <div class="formError" id="locationInputError">Veuillez cocher au moins une case</div>
               </div>
-
               <div
                 class="formData">
                 <input
@@ -224,12 +220,22 @@
                 type="submit"
                 class="button"
                 id="submitButton"
-               
               > C'est parti </button>
             </form>
           </div>
         </div>
       </div>
+
+      <div class="bground" id="thxModal"> 
+        <div class="content">
+          <span class="close closeThxModalBtn"></span>
+          <div class="modal-body">
+              <p> Merci ! Ta réservation a bien été enregistrée</p>
+            <button class="btn-submit closeThxModalBtn">Close</button>
+          </div>
+        </div>
+      </div>
+
     </main>
     <footer>
       <p class="copyrights">

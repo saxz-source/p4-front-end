@@ -8,7 +8,7 @@ function editNav() {
 }
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
+const modalbg = document.getElementById("subscribeModal");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
@@ -22,17 +22,28 @@ function launchModal() {
 
 /***************************NEW CODE BELOW ***************************/
 
-// Close the modal when click on the top-right cross
+// Close the main modal when click on the top-right cross
 const closeModal = document.getElementById("closeModal")
 closeModal.addEventListener("click", function () {
   modalbg.style.display = "none"
 })
 
+// DOM Elements related to Thanks-For-Subscribing Modal
+const thxModal = document.getElementById("thxModal")
+const closeThxModal = document.querySelectorAll(".closeThxModalBtn")
+
+// Close the Thanks Modal
+closeThxModal.forEach((btn) => btn.addEventListener("click", closeTheThxModal))
+
+function closeTheThxModal() {
+  thxModal.style.display = "none"
+}
+
 
 // Get button Submit
 let submitButton = document.getElementById("submitButton")
 
-// Get inputs
+// Get DOM form inputs
 let firstInput = document.getElementById("first")
 let lastInput = document.getElementById("last")
 let emailInput = document.getElementById("email")
@@ -46,18 +57,27 @@ document.getElementById("location4"),
 document.getElementById("location5"),
 document.getElementById("location6")]
 
-// Check if a location is checked
-function checkLocationValidity () {
-  let locationValid = false
-  for (let location of locations) {
-    if (location.checked ===true) locationValid = true
-  }
-  return locationValid
-}
 
-// Verify form submission, OnClick
-submitButton.addEventListener("click", function (e) {
+// Verify form submission, OnClick on the submit button
+submitButton.addEventListener("click", async function (e) {
+  e.preventDefault()
+  await verifyingData().then((r) => {
+    if (r === false) {
+      return
+    } else {
+      //Make the array of data and send it
+      modalbg.style.display = "none"
+      document.getElementById("thxModal").style.display = "block";
+    }
+  })
+})
 
+
+// Verify the validity of the informations, based on html constraints
+// Display alerts on the wrong form fields
+async function verifyingData() {
+
+  // Boolean that will be return : true if no error ; false if error
   let submitOk = true
 
   if (!firstInput.validity.valid) {
@@ -95,32 +115,36 @@ submitButton.addEventListener("click", function (e) {
     document.getElementById("checkBox1Error").style.display = "none"
   }
 
-  if (!quantityInput.validity.valid ) {
+  if (!quantityInput.validity.valid) {
     document.getElementById("quantityInputError").style.display = "block"
     submitOk = false
-  } else if (checkLocationValidity() && (quantityInput.value <1 || null)) {
+  } else if (checkLocationValidity() && (quantityInput.value < 1 || null)) {
     document.getElementById("quantityInputError").style.display = "block"
     submitOk = false
   } else {
     document.getElementById("quantityInputError").style.display = "none"
   }
 
-  if (quantityInput.value>0 && !checkLocationValidity()) {
+  if (quantityInput.value > 0 && !checkLocationValidity()) {
     document.getElementById("locationInputError").style.display = "block"
     submitOk = false
   } else {
     document.getElementById("locationInputError").style.display = "none"
   }
 
-  if (submitOk === false) e.preventDefault()
+  return submitOk
 
-})
-
-
+}
 
 
-
-
+// Check if a location is checked
+function checkLocationValidity() {
+  let locationValid = false
+  for (let location of locations) {
+    if (location.checked === true) locationValid = true
+  }
+  return locationValid
+}
 
 
 /*

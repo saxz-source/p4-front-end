@@ -8,7 +8,7 @@
   margin: 0;
   padding: 0;
 }
-/* Landing Page */
+/********Landing Page ***********/
 
 body {
   margin: 0;
@@ -81,7 +81,7 @@ img {
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
-    top: 0;
+    top:0;
   }
   .topnav.responsive a {
     float: none;
@@ -97,7 +97,6 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
   }
 } 
 
@@ -137,7 +136,7 @@ main {
   font-family: var(--font-slab);
 }
 
-/* Modal form */
+/************ Modal form ******************/
 
 .button {
   background: #fe142f;
@@ -399,7 +398,10 @@ input[data-error]::after {
 .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
-/* custom select end */
+
+
+
+/******************* custom select end ***************/
 .text-label {
   font-weight: normal;
   font-size: 16px;
@@ -487,6 +489,7 @@ footer {
     background: #fff;
     color: #000;
     padding: 20px;
+    min-width: 90%;
   }
   .hero-content::after {
     content: unset;
@@ -495,12 +498,15 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     white-space: normal;
   }
   .hero-text {
-    width: unset;
-    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width : 100%;
+    font-size: 1.3rem;
   }
   .hero-img img {
     border-radius: 10px;
@@ -535,4 +541,25 @@ footer {
   display: none;
   font-size: 0.6em;
   padding-top: 0.4em;
+}
+
+/*************** THANKS MODAL ***********************/
+
+#thxModal .modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  position: relative;
+}
+
+#thxModal .modal-body button {
+  position: absolute;
+  bottom : 1em;
+}
+
+@media screen and (max-width: 800px) {
+  #thxModal .modal-body{
+    width : 100%;
+  }
 }
