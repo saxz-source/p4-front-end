@@ -67,6 +67,7 @@ submitButton.addEventListener("click", async function (e) {
     } else {
       //Make the array of data and send it
       modalbg.style.display = "none"
+      document.getElementById("reserveForm").reset()
       document.getElementById("thxModal").style.display = "block";
     }
   })
@@ -125,7 +126,7 @@ async function verifyingData() {
     document.getElementById("quantityInputError").style.display = "none"
   }
 
-  if (quantityInput.value > 0 && !checkLocationValidity()) {
+  if ( !checkLocationValidity()) {
     document.getElementById("locationInputError").style.display = "block"
     submitOk = false
   } else {
@@ -145,33 +146,3 @@ function checkLocationValidity() {
   }
   return locationValid
 }
-
-
-/*
-submitButton.addEventListener("click", function (e) {
-  e.preventDefault()
-  formValidity([firstInput, lastInput])
-
-
-})
-
-
-function formValidity(inputFields) {
-
-
-  for (let input of inputFields) {
-    console.log(input.validity.valid)
-
-    let errorField = `${input} + Error`
-    console.log(errorField)
-
-    if (!input.validity.valid) {
-
-      document.getElementById(errorField).style.display = "block"
-    } else {
-      document.getElementById(errorField).style.display = "none"
-    }
-  }
-
-
-}*/
