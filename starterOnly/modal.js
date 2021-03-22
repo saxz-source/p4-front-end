@@ -78,10 +78,11 @@ submitButton.addEventListener("click", async function (e) {
 async function verifyingData() {
     // Boolean that will be return : true if no error ; false if error
     let submitOk = true;
-    var nameRegex = /[0-9,;:!~#{[|`^@\]}?./¤€§*$^%+µ£¨=)_("&)\\]/;
+    var nameRegex = /[0-9,;:!~#{[|`^@\]}?./¤€§*$^%+µ£¨=)_("&)\\]/g;
     var mailRegex = /\S+@\S+\.\S+/;
 
-    if (!firstInput.validity.valid || firstInput.value.search(nameRegex) == 0) {
+console.log(firstInput.value.search(nameRegex))
+    if (!firstInput.validity.valid || firstInput.value.search(nameRegex) != -1) {
         document.getElementById("firstInputError").style.display = "block";
         removeGreenBorderValidation(firstInput);
         submitOk = false;
@@ -90,7 +91,7 @@ async function verifyingData() {
         document.getElementById("firstInputError").style.display = "none";
     }
 
-    if (!lastInput.validity.valid || lastInput.value.search(nameRegex) == 0) {
+    if (!lastInput.validity.valid || lastInput.value.search(nameRegex) != -1) {
         document.getElementById("lastInputError").style.display = "block";
         removeGreenBorderValidation(lastInput);
         submitOk = false;
@@ -110,9 +111,13 @@ async function verifyingData() {
 
     // birthdate and birth year control
     let birthDate = birthdateInput.value.split("-")[0];
-    if (!birthdateInput.validity.valid || birthDate > 2016 || birthDate < 1920) {
+    if (
+        !birthdateInput.validity.valid ||
+        birthDate > 2016 ||
+        birthDate < 1920
+    ) {
         document.getElementById("birthdateInputError").style.display = "block";
-        removeGreenBorderValidation(birthDate);
+        removeGreenBorderValidation(birthdateInput);
         submitOk = false;
     } else {
         greenBorderValidation(birthdateInput);
@@ -156,7 +161,7 @@ function greenBorderValidation(element) {
 }
 
 function removeGreenBorderValidation(element) {
-    element.style.border =  "2px solid #FF4E60";
+    element.style.border = "2px solid #FF4E60";
 }
 
 // Check if a location is checked
